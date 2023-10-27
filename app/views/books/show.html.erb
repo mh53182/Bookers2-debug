@@ -24,14 +24,14 @@
           <td>
             <% if @book.favorited_by?(current_user) %>
               <P>
-                <%= link_to book_favorites_path(@book.id), method: :delete do %>
-                  ♥<%= @book.favorites.count %>
+                <%= link_to book_favorites_path(@book.id), method: :delete, style: "color: red" do %>
+                  <i class="fa-solid fa-heart"></i><%= @book.favorites.count %>
                 <% end %>
               </P>
               <% else %>
               <p>
                 <%= link_to book_favorites_path(@book.id), method: :post do %>
-                  ♡<%= @book.favorites.count %>
+                  <i class="fa-solid fa-heart"></i><%= @book.favorites.count %>
                 <% end %>
               </p>
             <% end %>
@@ -74,7 +74,7 @@
 
       <div>
         <%= form_with model:[@book, @book_comment] do |f| %>
-          <%= f.text_area :comment, rows: '6' %>
+          <%= f.text_area :comment, rows: '5', class: "w-100" %>
           <%= f.submit "送信" %>
         <% end %>
       </div>
