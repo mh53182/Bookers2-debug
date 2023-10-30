@@ -6,5 +6,7 @@ class Relationship < ApplicationRecord
   belongs_to :followed, class_name: "User"
   
 # ここはリレーションシップモデルなので両方belongs_to。多分。
+
+validates :follower_id, uniqueness: {scope: :followed_id}
   
 end

@@ -1,0 +1,11 @@
+<!--フォロワーをusers/followersで表示しているため未使用-->
+
+
+
+<h2>Follower Users</h2>
+
+<% if @users.exists? %>
+  <%= render "users/index", users: @users %>
+<% else %>
+  <P>ユーザーはいません</P>
+<% end %>
