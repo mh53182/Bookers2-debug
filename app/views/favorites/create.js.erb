@@ -1,0 +1,13 @@
+$("#favorite_buttons_<%= @book.id %>").html("<%= j(render "favorites/favorite", book: @book) %>");
+
+<!--◆$("#favorite_buttons_<%#= @book.id %>")は・・・↓-->
+<!--JavaScriptのセレクタを使用して特定の要素を選択している-->
+<!--@book.idは現在の本のIDを参照しており、セレクタは「idがfavorite_buttons_〇〇」という要素を選択する-->
+<!--ここで〇〇は実際の本のIDに置き換えられる-->
+
+<!--◆.html(...):は・・・↓->
+<!--選択した要素のHTMLコンテンツを変更するためのコード-->
+
+<!--"<%#= j(render 'favorites/favorite', book: @book) %>"は・・・↓-->
+<!--部分テンプレートに@bookを渡し、'favorites/favorite'という部分テンプレートを呼び出す-->
+
