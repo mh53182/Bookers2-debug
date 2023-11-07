@@ -25,7 +25,8 @@
             <%= render "favorites/favorite", book: @book %>
           </td>
           <td>
-            <p>コメント数：<%= @book.book_comments.count %></p>
+            <p>コメント数：<sapn id="comment_count"><%= @book.book_comments.count %></sapn></p>
+            <!--コメント件数はパーシャル化してないが非同期で件数を更新するためIDを付与-->
           </td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
@@ -34,37 +35,12 @@
         </tr>
       </table>
 
-      <table>
-        <% @book.book_comments.each do |comment| %>
-          <tr>
-            <td>
-              <%= link_to (comment.user) do %>
-                <%= image_tag comment.user.get_profile_image, size:"50x50" %><br>
-                <%= comment.user.name %>
-              <% end %>
-            </td>
-            <td>
-              <%= comment.comment %>
-            </td>
-            <% if comment.user == current_user %>
-              <td>
-                <%= link_to "Destroy", book_book_comment_path(@book.id, comment.id), method: :delete, class: "btn btn-danger" %>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
-      </table>
-
-
-
-
-
-
-      <div>
-        <%= form_with model:[@book, @book_comment] do |f| %>
-          <%= f.text_area :comment, rows: '5', class: "w-100" %>
-          <%= f.submit "送信" %>
-        <% end %>
+      <div id="book-comments">
+        <%= render "book_comments/comments", book: @book %>
+      </div>
+      <!--　↑　↓　コメント一覧とコメントフォームを非同期化。パーシャル呼び出し時にIDを付与-->
+      <div id="comment-form">
+        <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
       </div>
 
     </div>
